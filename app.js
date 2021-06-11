@@ -4,6 +4,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
 const _ = require("lodash");
+const { request } = require("express");
 
 let postArray = [];
 
@@ -54,13 +55,16 @@ app.post("/compose", function (req, res) {
 });
 
 app.get("/posts/:routeID", function (req, res) {
-  const lowerCaseID = _.lowerCase(req.params.routeID);
-  for (i = 0; i < postArray.length; i++) {
 
+  for (i = 0; i < postArray.length; i++) {
+    let lowerCaseID = _.lowerCase(req.params.routeID);
     let lowerCaseTitle = _.lowerCase(postArray[i].title);
 
     if (lowerCaseID === lowerCaseTitle) {
-      console.log("match found");
+      res.render("post", {
+        title: postArray[i].title,
+        des: (postArray[i].content),
+      })
     } else {
       console.log("no match");
     }
