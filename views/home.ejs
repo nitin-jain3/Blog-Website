@@ -1,0 +1,32 @@
+<%- include("partials/header" ); -%>
+
+    <h1>Home</h1>
+    <p>
+        <%= homeStartingContent %>
+    </p>
+
+
+    <!--
+        Posting the new elements using for loop :-
+        <% for(i=0 ; i < postArray.length ; i++){ %>
+        <h1>
+            <%= postArray[i].title %>
+        </h1>
+        <p>
+            <%= postArray[i].content %>
+        </p>
+
+        <% } %> -->
+    <!-- posting the elements using forEach function :-     -->
+    <% postArray.forEach(function(post){ %>
+        <h1>
+            <%= post.title %>
+        </h1>
+        <p>
+            <%= post.content %>
+        </p>
+        <% }); %>
+
+
+
+            <%- include("partials/footer" ); -%>
