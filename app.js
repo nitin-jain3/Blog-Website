@@ -3,6 +3,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const ejs = require("ejs");
+const _ = require("lodash");
 
 let postArray = [];
 
@@ -52,7 +53,24 @@ app.post("/compose", function (req, res) {
 
 });
 
+app.get("/posts/:routeID", function (req, res) {
+  const lowerCaseID = _.lowerCase(req.params.routeID);
+  for (i = 0; i < postArray.length; i++) {
 
+    let lowerCaseTitle = _.lowerCase(postArray[i].title);
+
+    if (lowerCaseID === lowerCaseTitle) {
+      console.log("match found");
+    } else {
+      console.log("no match");
+    }
+  }
+
+
+
+
+
+});
 
 
 
